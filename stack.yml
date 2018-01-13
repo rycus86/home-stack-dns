@@ -1,0 +1,21 @@
+version: '3.4'
+services:
+
+  # DynDNS client
+
+  ddclient-cloudflare:
+    image: rycus86/ddclient
+    command: --daemon=300 --ssl --debug
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.priority == low
+    volumes:
+      - /mnt/shared/home-stack-dns/ddclient-cloudflare.conf:/etc/ddclient.conf:ro
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: 192.168.0.52:24224
+        fluentd-async-connect: 'true'
+        tag: app.ddclient.cloudflare
