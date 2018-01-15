@@ -5,14 +5,14 @@ services:
 
   ddclient-cloudflare:
     image: rycus86/ddclient
-    command: --daemon=300 --ssl --debug
+    command: --daemon=300 --ssl --debug --file /var/config/ddclient/ddclient-cloudflare.conf
     deploy:
       replicas: 1
       placement:
         constraints:
           - node.labels.priority == low
     volumes:
-      - ddclient-config:/etc/ddclient.conf:ro
+      - ddclient-config:/var/config/ddclient:ro
     logging:
       driver: "fluentd"
       options:
@@ -25,5 +25,5 @@ volumes:
     driver: local
     driver_opts:
       type: nfs4
-      device: :/home-stack/dns/ddclient-cloudflare.conf
+      device: :/home-stack/dns
       o: addr=192.168.0.52,rsize=8192,wsize=8192,timeo=14,intr
