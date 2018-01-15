@@ -12,10 +12,18 @@ services:
         constraints:
           - node.labels.priority == low
     volumes:
-      - /mnt/shared/home-stack/dns/ddclient-cloudflare.conf:/etc/ddclient.conf:ro
+      - ddclient-config:/etc/ddclient.conf:ro
     logging:
       driver: "fluentd"
       options:
         fluentd-address: 192.168.0.52:24224
         fluentd-async-connect: 'true'
         tag: app.ddclient.cloudflare
+
+volumes:
+  ddclient-config:
+    driver: local
+    driver_opts:
+      type: nfs4
+      device: :/home-stack/dns/ddclient-cloudflare.conf
+      o: addr=192.168.0.52,rsize=8192,wsize=8192,timeo=14,intr
