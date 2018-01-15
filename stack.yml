@@ -12,7 +12,7 @@ services:
         constraints:
           - node.labels.priority == low
     volumes:
-      - /mnt/shared/home-stack-dns/ddclient-cloudflare.conf:/etc/ddclient.conf:ro
+      - /mnt/shared/home-stack/dns/ddclient-cloudflare.conf:/etc/ddclient.conf:ro
     logging:
       driver: "fluentd"
       options:
