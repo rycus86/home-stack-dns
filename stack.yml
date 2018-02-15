@@ -19,7 +19,7 @@ services:
         fluentd-address: 192.168.0.52:24224
         fluentd-async-connect: 'true'
         tag: app.ddclient.cloudflare
-  
+
   # DNS and SSL management
 
   domain-automation:
