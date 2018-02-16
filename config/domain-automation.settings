@@ -2,7 +2,7 @@ NOTIFICATION_MANAGER_CLASS=notifications.log_notification.LoggingNotificationMan
 DISCOVERY_CLASS=discovery.docker_labels.DockerLabelsDiscovery
 DNS_MANAGER_CLASS=dns_manager.cloudflare_dns.CloudflareDNSManager
 SSL_MANAGER_CLASS=ssl_manager.certbot_cf_ssl.CertbotCloudflareSSLManager
-SCHEDULER_CLASS=scheduler.repeat.FiveMinutesScheduler
+SCHEDULER_CLASS=scheduler.repeat_docker.DockerAwareScheduler
 
 DEFAULT_DOMAIN=viktoradam.net
 

@@ -18,6 +18,7 @@ services:
       options:
         fluentd-address: 192.168.0.52:24224
         fluentd-async-connect: 'true'
+        fluentd-sub-second-precision: 'true'
         tag: app.ddclient.cloudflare
 
   # DNS and SSL management
@@ -46,6 +47,7 @@ services:
       options:
         fluentd-address: 192.168.0.52:24224
         fluentd-async-connect: 'true'
+        fluentd-sub-second-precision: 'true'
         tag: app.domain.automation
 
 secrets:
