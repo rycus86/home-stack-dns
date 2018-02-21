@@ -8,3 +8,5 @@ DEFAULT_DOMAIN=viktoradam.net
 
 DOCKER_DISCOVERY_LABEL=routing-host
 DOCKER_SIGNAL_LABEL=domain.automation.signal
+
+METRICS_PORT=9421
