@@ -30,6 +30,8 @@ services:
       placement:
         constraints:
           - node.role == manager
+      update_config:
+        failure_action: rollback
       labels:
         - prometheus-job=domain-automation
         - prometheus-port=9421
