@@ -30,6 +30,9 @@ services:
       placement:
         constraints:
           - node.role == manager
+      labels:
+        - prometheus-job=domain-automation
+        - prometheus-port=9421
     secrets:
       - source: domain-automation-settings
         target: /var/secrets/app.config
