@@ -44,6 +44,8 @@ services:
         target: /var/secrets/certbot
       - source: notification-config
         target: /var/secrets/notifications
+    networks:
+      - monitoring
     volumes:
       - ssl-certs:/etc/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -83,3 +85,8 @@ volumes:
       type: nfs
       device: :/mnt/shared/ssl-certs
       o: addr=192.168.0.52,rsize=8192,wsize=8192,timeo=15,hard,intr
+
+networks:
+  monitoring:
+    name: home-monitoring
+    external: true
