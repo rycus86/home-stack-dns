@@ -82,8 +82,8 @@ volumes:
   ssl-certs:
     driver: local
     driver_opts:
-      type: nfs
-      device: :/mnt/shared/ssl-certs
+      type: nfs4
+      device: :/ssl-certs
       o: addr=192.168.0.52,rsize=8192,wsize=8192,timeo=15,hard,intr
 
 networks:
