@@ -1,28 +1,6 @@
 version: '3.5'
 services:
 
-  # DynDNS client
-
-  ddclient-cloudflare:
-    image: rycus86/ddclient
-    command: --daemon=300 --ssl --debug --file /var/config/ddclient/ddclient-cloudflare.conf
-    deploy:
-      replicas: 1
-      placement:
-        constraints:
-          - node.labels.priority == low
-    volumes:
-      - ddclient-config:/var/config/ddclient:ro
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: 192.168.0.52:24224
-        fluentd-async-connect: 'true'
-        fluentd-sub-second-precision: 'true'
-        tag: app.ddclient.cloudflare
-
-  # DNS and SSL management
-
   domain-automation:
     image: rycus86/domain-automation
     deploy:
@@ -72,13 +50,6 @@ secrets:
     file: ./config/notifications.conf
 
 volumes:
-  ddclient-config:
-    driver: local
-    driver_opts:
-      type: nfs
-      device: :/mnt/shared/home-stack/dns
-      o: addr=192.168.0.52,rsize=8192,wsize=8192,timeo=15,hard,intr
-
   ssl-certs:
     driver: local
     driver_opts:
