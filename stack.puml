@@ -1,0 +1,26 @@
+@startuml
+
+cloud "Cloudflare" as CF #ccf
+cloud "Let's Encrypt" as LE #ccf
+cloud "Slack" #ccf
+
+frame "DNS stack" {
+    [domain-automation] << rycus86/domain-automation >> #88f
+}
+
+frame "Monitoring stack" {
+    [Prometheus] #ccc
+}
+
+frame "Logging stack" {
+    [Fluentd] #ccc
+}
+
+[domain-automation] -u-> CF : DNS update
+[domain-automation] -u-> CF : Domain verification
+[domain-automation] -u-> LE : SSL certificates
+[domain-automation] -> Slack : Notifications
+[domain-automation] <-- [Prometheus] : Collect metrics
+[domain-automation] --> [Fluentd] : Send logs
+
+@enduml
