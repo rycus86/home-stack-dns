@@ -4,4 +4,4 @@ DNS configuration and maintenance for my Home Lab
 
 ## Components
 
-![stack](stack.png)
+![stack](https://github.com/rycus86/home-stack-dns/raw/master/stack.png)
