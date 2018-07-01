@@ -5,14 +5,13 @@ services:
     image: rycus86/domain-automation
     deploy:
       replicas: 1
-      placement:
-        constraints:
-          - node.role == manager
       update_config:
         failure_action: rollback
       labels:
         - prometheus-job=domain-automation
         - prometheus-port=9421
+    environment:
+      DOCKER_HOST: tcp://docker-manager:2375
     secrets:
       - source: domain-automation-settings
         target: /var/secrets/app.config
@@ -24,6 +23,7 @@ services:
         target: /var/secrets/notifications
     networks:
       - monitoring
+      - docker
     volumes:
       - ssl-certs:/etc/letsencrypt:nocopy
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -60,4 +60,7 @@ volumes:
 networks:
   monitoring:
     name: home-monitoring
+    external: true
+  docker:
+    name: home-docker
     external: true
