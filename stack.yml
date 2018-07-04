@@ -5,6 +5,9 @@ services:
     image: rycus86/domain-automation
     deploy:
       replicas: 1
+      resources:
+        limits:
+          memory: 64M
       update_config:
         failure_action: rollback
       labels:
