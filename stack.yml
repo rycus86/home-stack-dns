@@ -7,7 +7,7 @@ services:
       replicas: 1
       resources:
         limits:
-          memory: 64M
+          memory: 96M
       update_config:
         failure_action: rollback
       labels:
